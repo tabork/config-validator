@@ -43,7 +43,7 @@ std::string decode_jwt(const std::string& jwt_string)
 
 	auto key = "secret"; //Secret to use for the algorithm
 	//Create JWT object
-	jwt::jwt_object obj{algorithm("HS256"), payload({{"some", "payload"}}), secret(key)};
+	jwt::jwt_object obj{algorithm("HS256"), payload({{"run", "scan"}}), secret(key)};
 
 	//Get the encoded string/assertion
 	auto enc_str = obj.signature();
@@ -71,13 +71,24 @@ restinio::request_handling_status_t handler(restinio::request_handle_t req)
 		std::regex_match(req->header().request_target(), r))
 	{
 		std::string target = req->header().request_target().substr(1);
-		auto dec = decode_jwt(target);
+		std::string dec = decode_jwt(target);
+		
+		std::string s;
+
+		if (dec == "{\"run\":\"scan\"}")
+		{
+
+			// run scan files
+			std::cout << "running scan files" << std::endl;
+			s = "Run scan files";
+
+		}
 
 		req->create_response()
 	      .append_header( restinio::http_field::server, "Bee Server" )
 	      .append_header_date_field()
 	      .append_header( restinio::http_field::content_type, "text/json; charset=utf-8" )
-	      .set_body(dec)
+	      .set_body(s)
 	      .done();
 	    return restinio::request_accepted();
 	}
