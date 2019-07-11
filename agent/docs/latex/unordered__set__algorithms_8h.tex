@@ -1,0 +1,88 @@
+\hypertarget{unordered__set__algorithms_8h}{}\section{C\+:/\+Users/\+Kamakwazee/\+C\+Lion\+Projects/config\+\_\+compare/src/unordered\+\_\+set\+\_\+algorithms.h File Reference}
+\label{unordered__set__algorithms_8h}\index{C:/Users/Kamakwazee/CLionProjects/config\_compare/src/unordered\_set\_algorithms.h@{C:/Users/Kamakwazee/CLionProjects/config\_compare/src/unordered\_set\_algorithms.h}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Input\+It1 , class Input\+It2 , class Output\+It $>$ }\\Output\+It \mbox{\hyperlink{unordered__set__algorithms_8h_af00f40d2a71afa6ae8c1184d345d3401}{unordered\+\_\+set\+\_\+intersection}} (Input\+It1 first1, Input\+It1 first2, Input\+It2 last1, Input\+It2 last2, Output\+It d\+\_\+first)
+\begin{DoxyCompactList}\small\item\em Builds an unordered\+\_\+set of the intersection between two unordered\+\_\+sets. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Input\+It1 , class Input\+It2 , class Output\+It $>$ }\\Output\+It \mbox{\hyperlink{unordered__set__algorithms_8h_a15c5e2e52edf9a12469643142812cbb7}{unordered\+\_\+set\+\_\+difference}} (Input\+It1 first1, Input\+It1 first2, Input\+It2 last1, Input\+It2 last2, Output\+It d\+\_\+first)
+\begin{DoxyCompactList}\small\item\em Builds an unordered\+\_\+set of the difference between two unordered\+\_\+sets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Standard C++ doesn\textquotesingle{}t have native support for building the set intersection and difference between unordered\+\_\+sets, so this header file implements that functionality. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{unordered__set__algorithms_8h_a15c5e2e52edf9a12469643142812cbb7}\label{unordered__set__algorithms_8h_a15c5e2e52edf9a12469643142812cbb7}} 
+\index{unordered\_set\_algorithms.h@{unordered\_set\_algorithms.h}!unordered\_set\_difference@{unordered\_set\_difference}}
+\index{unordered\_set\_difference@{unordered\_set\_difference}!unordered\_set\_algorithms.h@{unordered\_set\_algorithms.h}}
+\subsubsection{\texorpdfstring{unordered\_set\_difference()}{unordered\_set\_difference()}}
+{\footnotesize\ttfamily template$<$class Input\+It1 , class Input\+It2 , class Output\+It $>$ \\
+Output\+It unordered\+\_\+set\+\_\+difference (\begin{DoxyParamCaption}\item[{Input\+It1}]{first1,  }\item[{Input\+It1}]{first2,  }\item[{Input\+It2}]{last1,  }\item[{Input\+It2}]{last2,  }\item[{Output\+It}]{d\+\_\+first }\end{DoxyParamCaption})}
+
+
+
+Builds an unordered\+\_\+set of the difference between two unordered\+\_\+sets. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Input\+It1} & The type of the first unordered\+\_\+set\textquotesingle{}s iterator \\
+\hline
+{\em Input\+It2} & The type of the second unordered\+\_\+set\textquotesingle{}s iterator \\
+\hline
+{\em Output\+It} & The type of the output\textquotesingle{}s iterator\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em first1} & The beginning iterator of the first unordered\+\_\+set \\
+\hline
+{\em first2} & The ending iterator of the first unordered\+\_\+set \\
+\hline
+{\em last1} & The beginning iterator of the second unordered\+\_\+set \\
+\hline
+{\em last2} & The ending iterator of the second unordered\+\_\+set \\
+\hline
+{\em d\+\_\+first} & The output iterator \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output iterator 
+\end{DoxyReturn}
+\mbox{\Hypertarget{unordered__set__algorithms_8h_af00f40d2a71afa6ae8c1184d345d3401}\label{unordered__set__algorithms_8h_af00f40d2a71afa6ae8c1184d345d3401}} 
+\index{unordered\_set\_algorithms.h@{unordered\_set\_algorithms.h}!unordered\_set\_intersection@{unordered\_set\_intersection}}
+\index{unordered\_set\_intersection@{unordered\_set\_intersection}!unordered\_set\_algorithms.h@{unordered\_set\_algorithms.h}}
+\subsubsection{\texorpdfstring{unordered\_set\_intersection()}{unordered\_set\_intersection()}}
+{\footnotesize\ttfamily template$<$class Input\+It1 , class Input\+It2 , class Output\+It $>$ \\
+Output\+It unordered\+\_\+set\+\_\+intersection (\begin{DoxyParamCaption}\item[{Input\+It1}]{first1,  }\item[{Input\+It1}]{first2,  }\item[{Input\+It2}]{last1,  }\item[{Input\+It2}]{last2,  }\item[{Output\+It}]{d\+\_\+first }\end{DoxyParamCaption})}
+
+
+
+Builds an unordered\+\_\+set of the intersection between two unordered\+\_\+sets. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Input\+It1} & The type of the first unordered\+\_\+set\textquotesingle{}s iterator \\
+\hline
+{\em Input\+It2} & The type of the second unordered\+\_\+set\textquotesingle{}s iterator \\
+\hline
+{\em Output\+It} & The type of the output\textquotesingle{}s iterator\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em first1} & The beginning iterator of the first unordered\+\_\+set \\
+\hline
+{\em first2} & The ending iterator of the first unordered\+\_\+set \\
+\hline
+{\em last1} & The beginning iterator of the second unordered\+\_\+set \\
+\hline
+{\em last2} & The ending iterator of the second unordered\+\_\+set \\
+\hline
+{\em d\+\_\+first} & The output iterator \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The output iterator 
+\end{DoxyReturn}

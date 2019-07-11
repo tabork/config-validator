@@ -1,0 +1,40 @@
+\hypertarget{jarvis__the__bee_8cpp}{}\section{C\+:/\+Users/\+Kamakwazee/\+C\+Lion\+Projects/config\+\_\+compare/src/jarvis\+\_\+the\+\_\+bee.cpp File Reference}
+\label{jarvis__the__bee_8cpp}\index{C:/Users/Kamakwazee/CLionProjects/config\_compare/src/jarvis\_the\_bee.cpp@{C:/Users/Kamakwazee/CLionProjects/config\_compare/src/jarvis\_the\_bee.cpp}}
+{\ttfamily \#include \char`\"{}jarvis\+\_\+the\+\_\+bee.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}unordered\+\_\+set\+\_\+algorithms.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{jarvis__the__bee_8cpp_a6126117b784c22f8d358c0fba01489c0}{compare\+\_\+configs}} (\mbox{\hyperlink{jarvis__the__bee_8h_a19dd80b1b46ee98bbe8590041eb8e76c}{Config\+Set}} baseline\+\_\+set, \mbox{\hyperlink{jarvis__the__bee_8h_a19dd80b1b46ee98bbe8590041eb8e76c}{Config\+Set}} compare\+\_\+set)
+\begin{DoxyCompactList}\small\item\em Compares two sets of strings using the Jaccard similarity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The filename will change. Contains the implementation for comparing two configs. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{jarvis__the__bee_8cpp_a6126117b784c22f8d358c0fba01489c0}\label{jarvis__the__bee_8cpp_a6126117b784c22f8d358c0fba01489c0}} 
+\index{jarvis\_the\_bee.cpp@{jarvis\_the\_bee.cpp}!compare\_configs@{compare\_configs}}
+\index{compare\_configs@{compare\_configs}!jarvis\_the\_bee.cpp@{jarvis\_the\_bee.cpp}}
+\subsubsection{\texorpdfstring{compare\_configs()}{compare\_configs()}}
+{\footnotesize\ttfamily double compare\+\_\+configs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{jarvis__the__bee_8h_a19dd80b1b46ee98bbe8590041eb8e76c}{Config\+Set}}}]{baseline\+\_\+set,  }\item[{\mbox{\hyperlink{jarvis__the__bee_8h_a19dd80b1b46ee98bbe8590041eb8e76c}{Config\+Set}}}]{compare\+\_\+set }\end{DoxyParamCaption})}
+
+
+
+Compares two sets of strings using the Jaccard similarity. 
+
+\[ J = \frac{M_{11}}{M_{10} + M_{01} + M_{11}}, \] where $ M_{11} $ is the number of elements in both sets, $ M_{10} $ is the number of elements in the first set only, and $ M_{01} $ is the number of elements in the second set only.
+
+
+\begin{DoxyParams}{Parameters}
+{\em baseline\+\_\+set} & The baseline comparison \\
+\hline
+{\em compare\+\_\+set} & The set of strings being compared \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Jaccard similarity between the sets of strings 
+\end{DoxyReturn}
