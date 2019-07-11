@@ -1,4 +1,4 @@
-// main file for input.
+// file for input.
 // 
 
 #include <iostream>
@@ -6,6 +6,7 @@
 #include <string>
 #include <unordered_set>
 #include <algorithm>
+#include <regex>
 
 #include "file_inputter.h"
 #include "common.h"
@@ -15,23 +16,26 @@ using std::cout;
 using std::endl;
 using std::string;
 using std::unordered_set;
+using std::regex_match;
 
-const std::string WHITESPACE = " \n\r\t\f\v";
-
+const std::string WHITESPACE = " \r\t\f\v";
+std::regex a ("<.*>");
+std::regex n (".*\\{.*");
+std::regex n1 ("\\}");
 
 ConfigSet readFiles (TYPE type, string path){
 	ifstream configFile (path);
 	ConfigSet set;
 
 	if (configFile.is_open()){
-		//cout << "file opened.\n";
 		string line = "";
 		while(getline(configFile,line)){
-			string ss = trim(line);
-			if (ss.length() != 0){
-				if (ss[0] != '#'){
-					//cout << line << endl;
-					set.insert(ss);
+			string s = trim(line);
+			if (s.length() != 0){
+				if (s[0] != '#'){
+					if ( (type == APACHE && !(regex_match(s,a))) || (type == NGINX && !(regex_match(s,n1)) && !(regex_match(s,n)) )) {
+						set.insert(s);
+					}			
 				}
 			}	
 		}
