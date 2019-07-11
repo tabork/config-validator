@@ -5,7 +5,7 @@
 #include <string>
 #include <unordered_set>
 
-using ConfigSet = std::unordered_set<std::string>;
+#include "common.h"
 
 ConfigSet readFiles (std::string);
 std::string formatLine (std::string);

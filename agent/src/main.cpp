@@ -3,6 +3,7 @@
 
 #include "jarvis_the_bee.h"
 #include "file_inputter.h"
+#include "common.h"
 
 int main() {
     ConfigSet baseline;

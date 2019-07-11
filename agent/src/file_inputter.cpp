@@ -8,6 +8,7 @@
 #include <algorithm>
 
 #include "file_inputter.h"
+#include "common.h"
 
 using std::ifstream;
 using std::cout;

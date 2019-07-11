@@ -9,6 +9,8 @@
 
 #include "unordered_set_algorithms.h"
 
+#include "common.h"
+
 #include <unordered_set>
 #include <iterator>
 #include <algorithm>
