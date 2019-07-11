@@ -11,8 +11,6 @@ std::string formatLine (std::string);
 std::string trim (const std::string&);
 std::string rtrim (const std::string&);
 std::string ltrim (const std::string&);
-ConfigSet trimForApache(ConfigSet);
-ConfigSet trimForNginx(ConfigSet);
 
 ConfigSet readFiles (TYPE type, std::string path);
 
