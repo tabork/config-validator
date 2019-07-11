@@ -7,40 +7,35 @@
 #include <unordered_set>
 #include <algorithm>
 
+#include "file_inputter.h"
+
 using std::ifstream;
 using std::cout;
 using std::endl;
 using std::string;
 using std::unordered_set;
-using ConfigSet = unordered_set<string>;
-
-ConfigSet readFiles (string);
-string formatLine (string);
-string trim (const string&);
-string rtrim (const string&);
-string ltrim (const string&);
 
 const std::string WHITESPACE = " \n\r\t\f\v";
 
 
 ConfigSet readFiles (string path){
-	ifstream sshConfigFile (path);
+	ifstream configFile (path);
 	ConfigSet set;
 
-	if (sshConfigFile.is_open()){
+	if (configFile.is_open()){
 		//cout << "file opened.\n";
 		string line = "";
-		while(getline(sshConfigFile,line)){
-			if (line.length() != 0){
-				if (line[0] != '#'){
+		while(getline(configFile,line)){
+			string ss = trim(line);
+			if (ss.length() != 0){
+				if (ss[0] != '#'){
 					//cout << line << endl;
-					string ss = trim(line);
-					set.insert(line);
+					set.insert(ss);
 				}
 			}	
 		}
 	}
-	sshConfigFile.close();
+	configFile.close();
 	return set;
 }
 
