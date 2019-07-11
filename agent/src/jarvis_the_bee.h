@@ -10,10 +10,7 @@
 
 #include <unordered_set>
 
-/**
- * @brief A set of strings for holding config data
- */
-using ConfigSet = std::unordered_set<std::string>;
+#include "common.h"
 
 /**
  * @brief Compares two sets of strings using the Jaccard similarity

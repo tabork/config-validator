@@ -2,6 +2,8 @@
 #include <iostream>
 
 #include "jarvis_the_bee.h"
+#include "file_inputter.h"
+#include "common.h"
 
 int main() {
     ConfigSet baseline;
@@ -21,6 +23,13 @@ int main() {
 
     double J = compare_configs(baseline, compare);
 
+    std::string file_path = "test_file.txt";
+
+    ConfigSet cs = readFiles(SSH, file_path);
+
     std::cout << "J = " << J << std::endl;
+
+    for (auto& item : cs)
+        std::cout << item << std::endl;
     return 0;
 }

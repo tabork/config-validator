@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.14)
 project(config_compare)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_C_COMPILER "gcc")
+set(CMAKE_CPP_COMPILER "g++")
 
 find_package(Doxygen)
 
@@ -13,4 +15,4 @@ if (DOXYGEN_FOUND)
             VERBATIM)
 endif(DOXYGEN_FOUND)
 
-add_executable(config_compare src/main.cpp src/jarvis_the_bee.cpp src/jarvis_the_bee.h src/unordered_set_algorithms.h)
+add_executable(config_compare src/main.cpp src/jarvis_the_bee.cpp src/jarvis_the_bee.h src/unordered_set_algorithms.h src/file_inputter.h src/file_inputter.cpp)
