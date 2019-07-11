@@ -25,7 +25,7 @@ int main() {
 
     std::string file_path = "test_file.txt";
 
-    ConfigSet cs = readFiles(file_path);
+    ConfigSet cs = readFiles(SSH, file_path);
 
     std::cout << "J = " << J << std::endl;
 

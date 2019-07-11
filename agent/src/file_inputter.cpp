@@ -19,7 +19,7 @@ using std::unordered_set;
 const std::string WHITESPACE = " \n\r\t\f\v";
 
 
-ConfigSet readFiles (string path){
+ConfigSet readFiles (TYPE type, string path){
 	ifstream configFile (path);
 	ConfigSet set;
 
