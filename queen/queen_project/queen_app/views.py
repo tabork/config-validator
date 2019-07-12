@@ -42,9 +42,10 @@ def parse_result(j):
 	out = ''
 	for scan in s['scans']:
 		t = scan['type']
-		out += '<h2 class="subheading">'+ t + '</h2><br>\n'
+		out += '<h2 class="subheading">'+ t + '</h2>\n'
 		for file in scan['files']:
 			out += file['name'] + ' = ' + file['J'] + '<br>\n'
+		out += '<br>\n';
 	return out
 
 def view_bee(request, slug):

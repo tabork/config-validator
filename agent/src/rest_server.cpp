@@ -12,6 +12,7 @@
 #include <regex>
 
 #include "rest_server.h"
+#include "file_comparison.h"
 #include "jwt/jwt.hpp"
 
 void run_rest_server(const int port, const std::string& address)
@@ -85,7 +86,8 @@ restinio::request_handling_status_t handler(restinio::request_handle_t req)
 			// run scan files
 			std::cout << "running scan files" << std::endl;
 			//s = "Run scan files";
-			s = "{\"scans\":[{\"type\":\"SSH\",\"files\":[{\"name\":\"/etc/ssh/sshd_config\",\"J\":\".578\"}]}]}";
+			// s = "{\"scans\":[{\"type\":\"SSH\",\"files\":[{\"name\":\"/etc/ssh/sshd_config\",\"J\":\".578\"}]}]}";
+			s = do_comparisons();
 			std::cout << s << std::endl;
 
 		} else {

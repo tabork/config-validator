@@ -27,5 +27,5 @@ class Bee(models.Model):
 		super(Bee, self).save(*args, **kwargs)
 
 class Result(models.Model):
-	bee = models.ForeignKey(Bee, on_delete=models.CASCADE)
+	bee = models.ForeignKey(Bee, on_delete=models.CASCADE, unique=True)
 	result = models.TextField()

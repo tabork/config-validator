@@ -21,7 +21,9 @@ def send_request(bee_id):
 	bee.sub_save()
 
 	response = requests.get(url=r)
-	result = Result.objects.update_or_create(bee=bee, result=response.content.decode('utf-8'))
+	result, created = Result.objects.get_or_create(bee=bee)
+	result.result = response.content.decode('utf-8')
+	result.save()
 	bee.status = 'Complete'
 	bee.sub_save()
 
