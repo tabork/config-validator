@@ -3,6 +3,7 @@
 
 #include "jarvis_the_bee.h"
 #include "file_inputter.h"
+#include "rest_server.h"
 #include "common.h"
 #include <vector>
 
@@ -38,9 +39,6 @@ int main() {
     baseline.push_back(readFiles(SSH, dovecotPathBaseline));
     baseline.push_back(readFiles(SSH, postfixPathBaseline));
 
-    // insert paths for baseline configuration files here.
-    // or initalize baseline here. 
-
     std::vector<double> outputj;
     auto bl = baseline.begin();
     for (auto cp = compare.begin(); cp != compare.end(); ++cp){
@@ -52,32 +50,6 @@ int main() {
     {
         std::cout << "J = " << *i << std::endl;
     }
-
-    //ConfigSet baseline;
-    // baseline.insert("test");
-    // baseline.insert("testagain");
-    // baseline.insert("whadup");
-
-    //ConfigSet compare;
-    // compare.insert("test");
-    // compare.insert("nicetry");
-    // compare.insert("hello");
-    // compare.insert("whadup");
-    // compare.insert("whatwhat");
-    // compare.insert("trybreaking");
-    // compare.insert("imabee");
-    // compare.insert("testagain");
-
-    //double J = compare_configs(baseline, compare);
-
-    //std::string file_path = "test_file.txt";
-
-    //ConfigSet cs = readFiles(SSH, file_path);
-
-    //std::cout << "J = " << J << std::endl;
-
-    // for (auto& item : cs)
-    //     std::cout << item << std::endl;
     return 0;
 
 

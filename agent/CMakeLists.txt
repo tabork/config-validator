@@ -5,6 +5,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_COMPILER "gcc")
 set(CMAKE_CPP_COMPILER "g++")
 
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+find_package(restinio CONFIG REQUIRED)
+
 find_package(Doxygen)
 
 if (DOXYGEN_FOUND)
@@ -15,4 +20,13 @@ if (DOXYGEN_FOUND)
             VERBATIM)
 endif(DOXYGEN_FOUND)
 
-add_executable(config_compare src/main.cpp src/jarvis_the_bee.cpp src/jarvis_the_bee.h src/unordered_set_algorithms.h src/file_inputter.h src/file_inputter.cpp)
+include_directories(include/)
+include_directories(${OPENSSL_INCLUDE_DIR})
+
+file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp)
+
+add_executable(config_compare ${SRC_FILES})
+
+target_link_libraries(config_compare crypto)
+target_link_libraries(config_compare restinio::restinio)
+target_link_libraries(config_compare ${CONAN_LIBS})
