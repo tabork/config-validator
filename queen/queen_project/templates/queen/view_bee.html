@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Bee{% endblock %}
+
+{% block heading %}
+	<div class="site-heading">
+      <h2>{{bee.name}}</h2>
+      <span class="subheading">{{bee.status}}</span>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<p>address = {{bee.address}}</p>
+<p>secret_key = {{bee.secret_key}}</p>
+
+{{body|safe}}
+
+<br>
+
+<a href="{% url 'queen_app:scan_bee' slug=bee.slug %}">
+<button class="btn btn-primary" name="submit">Scan</button>
+</a>
+
+
+{% endblock %}

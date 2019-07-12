@@ -12,6 +12,8 @@
 #include <regex>
 
 #include "rest_server.h"
+#include "file_comparison.h"
+#include "inih/INIReader.h"
 #include "jwt/jwt.hpp"
 
 void run_rest_server(const int port, const std::string& address)
@@ -24,8 +26,8 @@ void run_rest_server(const int port, const std::string& address)
 
 		restinio::run(
 			restinio::on_this_thread()
-				.port( 8080 )
-				.address( "0.0.0.0" )
+				.port( port )
+				.address( address )
 				.request_handler( handler ) );
 	}
 	catch( const std::exception & ex )
@@ -41,18 +43,21 @@ std::string decode_jwt(const std::string& jwt_string)
 
 	using namespace jwt::params;
 
-	auto key = "secret"; //Secret to use for the algorithm
+	INIReader reader("config.ini");
+
+	std::string key = reader.Get("config", "secret_key", "secret");
+
 	//Create JWT object
-	jwt::jwt_object obj{algorithm("HS256"), payload({{"run", "scan"}}), secret(key)};
+	// jwt::jwt_object obj{algorithm("HS256"), payload({{"run", "scan"}}), secret(key)};
 
 	//Get the encoded string/assertion
-	auto enc_str = obj.signature();
-	std::cout << enc_str << std::endl;
+	// auto enc_str = obj.signature();
+	// std::cout << enc_str << std::endl;
 
 	//Decode
 	auto dec_obj = jwt::decode(jwt_string, algorithms({"hs256"}), secret(key));
-	std::cout << dec_obj.header() << std::endl;
-	std::cout << dec_obj.payload() << std::endl;
+	// std::cout << dec_obj.header() << std::endl;
+	// std::cout << dec_obj.payload() << std::endl;
 
 	std::stringstream sstream;
 	sstream << dec_obj.payload();
@@ -67,9 +72,13 @@ restinio::request_handling_status_t handler(restinio::request_handle_t req)
 
 	std::regex r("^/[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$");
 
+	std::cout << "Connection received" << std::endl;
+
 	if (restinio::http_method_get() == req->header().method() &&
 		std::regex_match(req->header().request_target(), r))
 	{
+
+		std::cout << "GET target proper" << std::endl;
 		std::string target = req->header().request_target().substr(1);
 		std::string dec = decode_jwt(target);
 		
@@ -80,8 +89,13 @@ restinio::request_handling_status_t handler(restinio::request_handle_t req)
 
 			// run scan files
 			std::cout << "running scan files" << std::endl;
-			s = "Run scan files";
+			//s = "Run scan files";
+			// s = "{\"scans\":[{\"type\":\"SSH\",\"files\":[{\"name\":\"/etc/ssh/sshd_config\",\"J\":\".578\"}]}]}";
+			s = do_comparisons();
+			std::cout << s << std::endl;
 
+		} else {
+			std::cout << dec << std::endl << "Issue" << std::endl;
 		}
 
 		req->create_response()

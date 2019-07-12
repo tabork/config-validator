@@ -14,6 +14,7 @@
 #include <unordered_set>
 #include <iterator>
 #include <algorithm>
+#include <iostream>
 
 double compare_configs(ConfigSet baseline_set, ConfigSet compare_set)
 {
@@ -38,6 +39,8 @@ double compare_configs(ConfigSet baseline_set, ConfigSet compare_set)
                              intersect.begin(), intersect.end(),
                              std::inserter(comp_diff, comp_diff.begin()));
     int M01 = comp_diff.size();
+
+    std::cout << M11 << ',' << M10 << ',' << M01 << ',' << ((double)M11 / ((double)M10 + (double)M01 + (double)M11)) << std::endl;
 
     // Return the Jaccard Index
     return ((double)M11 / ((double)M10 + (double)M01 + (double)M11));

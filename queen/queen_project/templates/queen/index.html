@@ -2,8 +2,28 @@
 
 {% block title %}Index{% endblock %}
 
+{% block heading %}
+	<div class="site-heading">
+      <h2>Bees</h2>
+      <span class="subheading"></span>
+    </div>
+{% endblock %}
+
 {% block content %}
 
-Hello
+{% for bee in bees %}
+
+	<div class="post-preview">
+		<a href="{% url 'queen_app:bee' slug=bee.slug %}">
+			<h2 class="post-title">{{bee.name}}</h2>
+			<h3 class="post-subtitle">{{bee.status}}</h3>
+		</a>
+		<p class="post-meta">
+			{{bee.address}}
+		</p>
+	</div>
+	<hr/>
+
+{% endfor %}
 
 {% endblock %}

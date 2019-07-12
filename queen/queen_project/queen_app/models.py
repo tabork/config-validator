@@ -23,6 +23,9 @@ class Bee(models.Model):
 		self.secret_key = get_random_string(length=32)
 		super(Bee, self).save(*args, **kwargs)
 
+	def sub_save(self, *args, **kwargs):
+		super(Bee, self).save(*args, **kwargs)
+
 class Result(models.Model):
-	bee = models.ForeignKey(Bee, on_delete=models.CASCADE)
+	bee = models.ForeignKey(Bee, on_delete=models.CASCADE, unique=True)
 	result = models.TextField()

@@ -8,6 +8,7 @@ enum TYPE{
 	SSH,
 	APACHE,
 	NGINX,
+	MAIL
 };
 
 #endif //CONFIG_COMPARE_FILE_INPUTTER_H
