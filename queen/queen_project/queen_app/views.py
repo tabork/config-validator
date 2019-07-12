@@ -6,6 +6,11 @@ from .forms import AddBeeForm
 
 def index(request):
 	template = 'queen/index.html'
+	object_list = Bee.objects.all().order_by('name')
+
+	context = {
+		'bees': bees
+	}
 
 	return render(request, template)
 
