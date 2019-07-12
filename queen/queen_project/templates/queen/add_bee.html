@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Bee{% endblock %}
+
+{% block heading %}
+	<div class="site-heading">
+      <h2>Add Bee</h2>
+      <span class="subheading"></span>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<form method="post">{% csrf_token %}
+	<div class="form-group">
+		{% for field in form %}
+			<label>{{field.label_tag}}</label>
+			{{field}}
+		{% endfor %}
+	</div>
+	<button class="btn btn-primary" type="submit" name="submit">Add</button>
+</form>
+
+{% endblock %}
