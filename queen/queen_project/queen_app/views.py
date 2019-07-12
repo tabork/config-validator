@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect
 from .models import Bee, Result
 from .forms import AddBeeForm
 
+from queen_app.tasks import send_request
+
 def index(request):
 	template = 'queen/index.html'
 	bees = Bee.objects.all().order_by('name')
@@ -67,4 +69,13 @@ def view_bee(request, slug):
 	}
 
 	return render(request, template, context)
+
+def scan_bee(request, slug):
+	try:
+		bee = Bee.objects.get(slug=slug)
+	except Bee.DoesNotExist:
+		return redirect('/')
+
+	send_request.delay(bee.id)
+	return redirect('queen_app:bee', slug=slug)
 
