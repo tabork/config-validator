@@ -54,4 +54,13 @@ int main() {
 
 
 
+<<<<<<< HEAD
 }
+=======
+    // for (auto& item : cs)
+    //     std::cout << item << std::endl;
+    //     
+    run_rest_server(3000, "127.0.0.1");
+    return 0;
+}
+>>>>>>> queen

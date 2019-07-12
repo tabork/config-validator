@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Bee{% endblock %}
+
+{% block heading %}
+	<div class="site-heading">
+      <h2>{{bee.name}}</h2>
+      <span class="subheading">{{bee.status}}</span>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<p>address = {{bee.address}}</p>
+
+{{body|safe}}
+
+
+{% endblock %}
