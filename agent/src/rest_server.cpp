@@ -13,6 +13,7 @@
 
 #include "rest_server.h"
 #include "file_comparison.h"
+#include "inih/INIReader.h"
 #include "jwt/jwt.hpp"
 
 void run_rest_server(const int port, const std::string& address)
@@ -42,7 +43,10 @@ std::string decode_jwt(const std::string& jwt_string)
 
 	using namespace jwt::params;
 
-	auto key = "UsZrRgstPVWiMPydZeeH1w1wkna62XME"; //Secret to use for the algorithm
+	INIReader reader("config.ini");
+
+	std::string key = reader.Get("config", "secret_key", "secret");
+
 	//Create JWT object
 	// jwt::jwt_object obj{algorithm("HS256"), payload({{"run", "scan"}}), secret(key)};
 
