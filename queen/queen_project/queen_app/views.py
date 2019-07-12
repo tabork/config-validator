@@ -10,17 +10,23 @@ from .forms import AddBeeForm
 from queen_app.tasks import send_request
 
 def index(request):
-	template = 'queen/index.html'
-	bees = Bee.objects.all().order_by('name')
+	if request.user.is_authenticated:
+		template = 'queen/index.html'
+		bees = Bee.objects.all().order_by('name')
 
-	context = {
-		'bees': bees
-	}
+		context = {
+			'bees': bees
+		}
 
-	return render(request, template, context)
+		return render(request, template, context)
+	else:
+		template = 'queen/index_noauth.html'
+
+		return render(request, template)
 
 def add_bee(request):
-	# TODO add auth
+	if not request.user.is_authenticated:
+		return redirect('/')
 	template = 'queen/add_bee.html'
 
 	form = AddBeeForm(request.POST or None)
@@ -49,6 +55,9 @@ def parse_result(j):
 	return out
 
 def view_bee(request, slug):
+	if not request.user.is_authenticated:
+		return redirect('/')
+
 	template = 'queen/view_bee.html'
 
 	try:
@@ -72,6 +81,9 @@ def view_bee(request, slug):
 	return render(request, template, context)
 
 def scan_bee(request, slug):
+	if not request.user.is_authenticated:
+		return redirect('/')
+
 	try:
 		bee = Bee.objects.get(slug=slug)
 	except Bee.DoesNotExist:

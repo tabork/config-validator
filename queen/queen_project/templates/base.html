@@ -41,9 +41,18 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'queen_app:index' %}">Home</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'queen_app:add_bee' %}">Add Bee</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/">Admin</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/login/?next=/">Login</a>
+            </li>
+            {% endif %}
             {% comment %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'blog:about' %}">About</a>
