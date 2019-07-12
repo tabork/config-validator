@@ -1,3 +1,6 @@
+
+import json
+
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -6,13 +9,13 @@ from .forms import AddBeeForm
 
 def index(request):
 	template = 'queen/index.html'
-	object_list = Bee.objects.all().order_by('name')
+	bees = Bee.objects.all().order_by('name')
 
 	context = {
 		'bees': bees
 	}
 
-	return render(request, template)
+	return render(request, template, context)
 
 def add_bee(request):
 	# TODO add auth
@@ -31,3 +34,37 @@ def add_bee(request):
 	}
 
 	return render(request, template, context)
+
+def parse_result(j):
+	s = json.loads(j)
+	out = ''
+	for scan in s['scans']:
+		t = scan['type']
+		out += '<h2 class="subheading">'+ t + '</h2><br>\n'
+		for file in scan['files']:
+			out += file['name'] + ' = ' + file['J'] + '<br>\n'
+	return out
+
+def view_bee(request, slug):
+	template = 'queen/view_bee.html'
+
+	try:
+		bee = Bee.objects.get(slug=slug)
+	except Bee.DoesNotExist:
+		return redirect('/')
+
+	if bee.status == 'Complete':
+		result = Result.objects.get(bee=bee)
+		body = parse_result(result.result)
+	elif bee.status == 'Scanning':
+		body = 'Still scanning'
+	else:
+		body = 'Needs scanned'
+
+	context = {
+		'bee': bee,
+		'body': body
+	}
+
+	return render(request, template, context)
+
