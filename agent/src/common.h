@@ -7,7 +7,7 @@ using ConfigSet = std::unordered_set<std::string>;
 enum TYPE{
 	SSH,
 	APACHE,
-	NGINX
+	NGINX,
 };
 
 #endif //CONFIG_COMPARE_FILE_INPUTTER_H
